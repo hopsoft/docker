@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  pg:
+    image: postgres
+    networks:
+      - rails
+    volumes:
+      - log:/var/log
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+
+  redis:
+    image: redis
+    networks:
+      - rails
+    volumes:
+      - log:/var/log
+
+  web:
+    image: hopsoft/rails
+    container_name: rails
+    build:
+      context: .
+      args:
+        node_version: ${NODE_VERSION}
+        ruby_version: ${RUBY_VERSION}
+    networks:
+      - rails
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/application
+      - log:/application/log
+      - log:/var/log
+
+volumes:
+  log:
+  pg_data:
+
+networks:
+  rails:
