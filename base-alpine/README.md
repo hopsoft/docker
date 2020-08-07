@@ -1,6 +1,6 @@
 # Hopsoft Base Docker Image
 
-This is an improved base-image that you can drop into any rails project running ruby 2.7.1 and will work. 
+Installation - Drop the `Dockerfile` and `docker-compose.yml` into a ruby-2.7.1 compatible rails project. This image is using the official rails:2.7.1-alpine verison of linux and alpine repo of Nodejs.
 
 # common tasks
 
